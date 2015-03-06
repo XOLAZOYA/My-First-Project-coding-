@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+ "http://www.w3.org/TR/html4/loose.dtd" > 
+ <html lang='en'> 
+ <head> 
+ <meta http-equiv='Content-type' content='text/html;charset=UTF-8'> 
+ <title>Scientific Calculator</title>
+ <h2 style="text-align:right">
+   <img src="http://www.tcocd.de/Pictures/Miscellaneous/Shares/msi-electronics_logo1.jpg"/> 
+<h2>
+ <script type="text/javascript"> 
+ var result = 0; /* cumulative result of calculations to date */ 
+ var next_operation = ''; /* operation to perform on next call to calculate() */ 
+ var first_digit = true; /* clear before adding next digit? */ 
+ function clear_all() { 
+ /* clear all settings to start again */ 
+ result = 0; 
+ next_operation = ''; 
+ document.calc.wtcalc.value = ''; 
+ first_digit = true; 
+ } 
+ function calculate(op) { 
+ /* perform previous operation, display result and store next operation */ 
+ var this_operation = next_operation; 
+ var a = result; 
+ var b = parseFloat(document.calc.wtcalc.value); 
+ first_digit = true; 
+ switch (this_operation) { 
+ case '' : result = b; break; 
+ case '+': result = a + b; break; 
+ case '-': result = a - b; break; 
+ case '*': result = a * b; break; 
+ case '/': result = a / b; break; 
+ } 
+ if (op == '=') { 
+ document.calc.wtcalc.value = '' + result; 
+ next_operation = ''; 
+ } else { 
+ next_operation = op; 
+ } 
+ } 
+ function digits(digit) { 
+ /* add digit to display */ 
+ if (first_digit) { 
+ document.calc.wtcalc.value = digit; 
+ first_digit = false; 
+ } else { 
+ document.calc.wtcalc.value += digit; 
+ } 
+ } 
+ function immediate(op) { 
+ /* perform immedite operation and disply result */ 
+ var b = parseFloat(document.calc.wtcalc.value); 
+ first_digit = true; 
+ switch (op) { 
+ case 'sin': 
+ b = '' + Math.sin(b); 
+ break; 
+ case 'cos': 
+ b = '' + Math.cos(b); 
+ break; 
+ case 'tan': 
+ b = '' + Math.tan(b); 
+ break; 
+ case 'pi': 
+ b = '3.1415926535897932'; 
+ break; 
+ } 
+ document.calc.wtcalc.value = '' + b; 
+ } 
+ </script> 
+ <h1>MSI-XMAN MORNING CHECK LIST</h1>
+<ul>
+<li><input type="checkbox"/><label>Sleep</label></li>
+<li><input type="checkbox"/><label>Wake up</label></li>
+<li><input type="checkbox"/><label>Wash</label></li>
+<li><input type="checkbox"/><label>Eat</label></li>
+<li><input type="checkbox"/><label>Gurmur reception</label></li>
+<li><input type="checkbox"/><label>Wait for Mdala</label></li>
+<li><input type="checkbox"/><label>....To Cortexhub</label></li>
+</ul>
+ </head> 
+ 
+<style>
+body  {
+    background-image: url("http://wallpoper.com/images/00/34/73/84/gloss-microsoft_00347384.jpg");
+    background-color: #cccccc;
+}
+</style>
+ <h1 style="font-family: Copperplate Gothic Bold; color:red">MSI-XMAN New TECH</h1> 
+ <br>
+ </br>
+ <form name=calc action="javascript:return false;"> 
+ <table border= 3> 
+ <tr><td colspan=3 width="75%"><input name="wtcalc" type="text"></td><td width="25%"><input type="button" onClick="clear_all();" value="C" name="C" title="C"></td></tr> 
+ <tr> 
+ <td width="25%"><input type="button" onClick="digits('1');" value="1" name="1" title="1" ></td> 
+ <td width="25%"><input type="button" onClick="digits('2');" value="2" name="2" title="2" ></td> 
+ <td width="25%"><input type="button" onClick="digits('3');" value="3" name="3" title="3" ></td> 
+ <td width="25%"><input type="button" onClick="calculate('+');" value="+" name="+" title="+" ></td> 
+ </tr> 
+ <tr> 
+ <td width="25%"><input type="button" onClick="digits('4');" value="4" name="4" title="4" ></td> 
+ <td width="25%"><input type="button" onClick="digits('5');" value="5" name="5" title="5" ></td> 
+ <td width="25%"><input type="button" onClick="digits('6');" value="6" name="6" title="6" ></td> 
+ <td width="25%"><input type="button" onClick="calculate('-');" value="-" name="-" title="-" ></td> 
+ </tr> 
+ <tr> 
+ <td width="25%"><input type="button" onClick="digits('7');" value="7" name="7" title="7" ></td> 
+ <td width="25%"><input type="button" onClick="digits('8');" value="8" name="8" title="8" ></td> 
+ <td width="25%"><input type="button" onClick="digits('9');" value="9" name="9" title="6" ></td> 
+ <td width="25%"><input type="button" onClick="calculate('*');" value="*" name="*" title="*" ></td> 
+ </tr> 
+ <tr> 
+ <td width="25%"><input type="button" onClick="digits('.');" value="." name="." title="." ></td> 
+ <td width="25%"><input type="button" onClick="digits('0');" value="0" name="0" title="0" ></td> 
+ <td width="25%"><input type="button" onClick="calculate('=');" value="=" name="=" title="=" ></td> 
+ <td width="25%"><input type="button" onClick="calculate('/');" value="/" name="/" title="/" ></td> 
+ </tr> 
+ <tr> 
+ <td width="25%"><input type="button" onClick="immediate('sin');" value="sin" name="sin" title="sin" ></td> 
+ <td width="25%"><input type="button" onClick="immediate('tan');" value="tan" name="tan" title="tan" ></td> 
+ <td width="25%"><input type="button" onClick="immediate('cos');" value="cos" name="cos" title="cos" ></td> 
+ <td width="25%"><input type="button" onClick="immediate('pi');" value="pi" name="pi" title="pi" ></td> 
+ </table> 
+ </form> 
+ <br>
+ </br>
+ <link type="text/css" href="http://text-fixer.s3.amazonaws.com/word-counter-embed-min.css" rel="stylesheet" media="all" /><div id="tf-online-tools"><p id="tfToolLink"><small>Free tool from TextFixer.com: <a href="http://www.textfixer.com/tools/online-word-counter.php" target="_blank">Online Word Counter</a></small></p></div><script type="text/javascript" src="http://text-fixer.s3.amazonaws.com/word-counter-embed-min.js"></script>
+ <br>
+ </br>
+ 
+ </body> 
+ </html> 
